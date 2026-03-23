@@ -1,0 +1,26 @@
+{
+  "name": "resume-analyzer",
+  "version": "1.0.0",
+  "description": "Resume Analyzer",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "server.jspackage.jsonpackage-lock.jsonPRD.md.gitignorepublic/src/       "
+  },
+  "license": "ISC",
+  "author": "Archita Garg",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "pdf-parse": "^2.4.5"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}
