@@ -1,0 +1,16 @@
+
+C:\Users\garga\Documents\VS Code\Resume-Analyzer
+├── node_modules
+├── package-lock.json
+├── package.json
+├── PRD.md
+├── public
+├── src
+├── structure.txt
+└── uploads
+
+directory: 4 file: 4
+
+
+
+[2K[1G

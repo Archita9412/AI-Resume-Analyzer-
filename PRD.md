@@ -16,7 +16,7 @@ March 2026
 
 # 1. Objective
 
-This project aims to build a web application where users can upload their resumes and receive intelligent feedback. The system will analyze the resume to extract skills, calculate a score, and provide suggestions for improvement.
+This project aims to build a web application where users can upload their resumes and receive intelligent feedback. The system will analyze the resume to extract skills, calculate a score, and provide suggestions with a chatbot to suggest improvements .
 
 The goal is to help students and job seekers improve their resumes using AI-integrated analysis.
 

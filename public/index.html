@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeAI — AI-Powered Resume Analyzer</title>
+  <meta name="description" content="Get instant AI-driven insights, skill gap analysis, and actionable suggestions to make your resume stand out." />
+  <link rel="stylesheet" href="style/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+  <img src="assets/images/logo.png" alt="ResumeAI Logo" class="logo-img">
+  <span class="logo-text"></span>
+</div>
+      <div class="nav-links">
+        <a href="#" class="nav-link">Features</a>
+        <a href="#" class="nav-link">How it Works</a>
+        <a href="#" class="nav-link">Pricing</a>
+      </div>
+      <button class="btn-signin">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero-section" class="hero">
+    <div class="orbs">
+      <div class="orb orb-teal orb-1"></div>
+      <div class="orb orb-purple orb-2"></div>
+      <div class="orb orb-mixed orb-3"></div>
+      <div class="orb orb-teal-sm orb-4"></div>
+      <div class="orb orb-purple-sm orb-5"></div>
+    </div>
+    <div class="dot-grid"></div>
+    <div class="hero-content">
+      <div class="hero-card card-glass glow-pulse-anim">
+        <div class="badge"><span class="badge-icon"></span> AI-Powered Analysis</div>
+        <h1>Analyze Your Resume<br><span class="text-gradient">Like Never Before</span></h1>
+        <p class="hero-desc">Get instant AI-driven insights, skill gap analysis, and actionable suggestions to make your resume stand out.</p>
+        <div class="hero-btns">
+          <button class="btn-primary glow-primary" onclick="showUpload()"> Get Started Free →</button>
+          <button class="btn-secondary" onclick="showUpload()">See How It Works</button>
+        </div>
+        <div class="feature-pills">
+          <span class="pill">🛡️ ATS Optimized</span>
+          <span class="pill">📊 Score Analysis</span>
+          <span class="pill">✅ Smart Tips</span>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card card-glass"><p class="stat-value text-gradient">50K+</p><p class="stat-label">Resumes Analyzed</p></div>
+        <div class="stat-card card-glass"><p class="stat-value text-gradient">95%</p><p class="stat-label">Success Rate</p></div>
+        <div class="stat-card card-glass"><p class="stat-value text-gradient">&lt;10s</p><p class="stat-label">Analysis Time</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upload Section -->
+  <section id="upload-section" class="section hidden">
+    <div class="upload-card card-glass">
+      <div class="badge"><span class="badge-icon">✦</span> Step 1 of 2</div>
+      <h2>Upload Your <span class="text-gradient">Resume</span></h2>
+      <p class="upload-desc">Our AI will analyze it and provide actionable insights</p>
+      <div id="drop-zone" class="drop-zone card-glass">
+        <div class="drop-icon">☁️</div>
+        <p class="drop-text"><strong>Drop your resume here</strong></p>
+        <p class="drop-sub">or <span class="text-primary">browse files</span></p>
+        <div class="format-pills"><span class="pill-sm">PDF</span><span class="pill-sm">DOC</span><span class="pill-sm">DOCX</span></div>
+        <input type="file" id="file-input" accept=".pdf,.doc,.docx" hidden />
+      </div>
+      <div id="file-info" class="file-info hidden">
+        <div class="file-icon">📄</div>
+        <div class="file-details">
+          <p id="file-name" class="file-name"></p>
+          <p id="file-size" class="file-size"></p>
+        </div>
+        <span class="pill-success">✓ Uploaded</span>
+        <button class="btn-clear" onclick="clearFile()">✕</button>
+      </div>
+      <button id="analyze-btn" class="btn-primary glow-primary hidden" onclick="startAnalysis()">✦ Analyze Resume</button>
+    </div>
+  </section>
+
+  <!-- Analyzing Section -->
+  <section id="analyzing-section" class="section hidden">
+    <div class="analyze-card card-glass">
+      <h2>Analyzing Your <span class="text-gradient">Resume</span></h2>
+      <p class="analyze-desc">Sit tight — magic is happening ✨</p>
+      <div class="progress-card card-glass glow-pulse-anim">
+        <div class="progress-header">
+          <span>Processing your resume...</span>
+          <span id="progress-pct" class="progress-pct font-mono">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+      <div id="steps" class="steps">
+        <div class="step active" data-step="0">
+          <div class="step-icon">🔍</div>
+          <div class="step-text"><p class="step-label">Parsing Resume</p><p class="step-desc">Extracting structure & content</p></div>
+          <div class="step-status"><div class="dots"><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="step" data-step="1">
+          <div class="step-icon">🧠</div>
+          <div class="step-text"><p class="step-label">AI Analysis</p><p class="step-desc">Deep learning evaluation</p></div>
+          <div class="step-status"></div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-icon">📊</div>
+          <div class="step-text"><p class="step-label">Scoring</p><p class="step-desc">Generating detailed scores</p></div>
+          <div class="step-status"></div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-icon">✅</div>
+          <div class="step-text"><p class="step-label">Complete</p><p class="step-desc">Results ready!</p></div>
+          <div class="step-status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="results-section" class="section hidden">
+    <div class="results-header">
+      <h2>Your <span class="text-gradient">Analysis Results</span></h2>
+      <p>Here's what we found — you're doing amazing! 🚀</p>
+    </div>
+
+    <!-- Motivational Banner -->
+    <div class="motivational-banner card-glass neon-border">
+      <div class="banner-orb-1"></div>
+      <div class="banner-orb-2"></div>
+      <div class="banner-content">
+        <div class="banner-icon glow-primary">🔥</div>
+        <div>
+          <h3><span class="text-gradient">You're Crushing It!</span> 🔥</h3>
+          <p>Your resume demonstrates remarkable potential. With a few strategic tweaks, you'll be unstoppable. Every great career started with a single bold step — and you've already taken it!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Score + Skills Grid -->
+    <div class="score-skills-grid">
+      <div class="score-card card-glass">
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="hsl(228 16% 13%)" stroke-width="7"/>
+            <circle id="score-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#scoreGrad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 314" transform="rotate(-90 60 60)" style="filter: drop-shadow(0 0 10px hsl(168 76% 46% / 0.5)) drop-shadow(0 0 20px hsl(270 65% 58% / 0.3))"/>
+            <defs><linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="hsl(168 76% 46%)"/><stop offset="100%" stop-color="hsl(270 65% 58%)"/></linearGradient></defs>
+          </svg>
+          <div class="score-value"><span id="score-number" class="text-gradient">0</span><span class="score-label">SCORE</span></div>
+        </div>
+        <p class="score-title">Resume Score</p>
+        <p class="score-sub">Great foundation — let's perfect it!</p>
+      </div>
+      <div class="skills-card card-glass">
+        <div class="skills-header"><span>💻</span><h3>Detected Skills</h3></div>
+        <div id="skills-list" class="skills-list"></div>
+        <div class="skills-footer"><span>⚡ 8 skills detected • 3 trending in your industry</span></div>
+      </div>
+    </div>
+
+    <!-- Category Scores -->
+    <div class="categories-card card-glass">
+      <div class="cat-header"><span>📊</span><h3>Detailed Breakdown</h3></div>
+      <div id="categories"></div>
+    </div>
+
+    <!-- Motivational Quotes -->
+    <div class="quotes-grid" id="quotes-grid"></div>
+
+    <!-- Pro Tips -->
+    <div class="tips-card card-glass neon-border-purple">
+      <div class="tips-header"><span>💡</span><h3>Pro Tips to Level Up</h3></div>
+      <div class="tips-grid">
+        <div class="tip"><span>💼</span><p>Quantify achievements with numbers (e.g., 'Increased sales by 30%')</p></div>
+        <div class="tip"><span>🔍</span><p>Tailor keywords to each job description for ATS</p></div>
+        <div class="tip"><span>✏️</span><p>Keep it concise — recruiters spend ~7 seconds on initial scan</p></div>
+        <div class="tip"><span>🏆</span><p>Add a compelling summary showcasing your unique value</p></div>
+      </div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" onclick="resetApp()">Analyze Another Resume</button>
+    </div>
+  </section>
+
+  <!-- Chatbot -->
+  <div id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChat()">
+    <span id="chat-icon">💬</span>
+  </div>
+  <div id="chatbot" class="chatbot hidden">
+    <div class="chat-header">
+      <div class="chat-header-left"><span class="chat-avatar"></span><span class="chat-title">ResumeAI Assistant</span></div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div id="chat-messages" class="chat-messages">
+      <div class="chat-msg bot"><div class="msg-bubble">Hi! 👋 I'm your ResumeAI assistant. Ask me anything about resume tips, career advice, or how to improve your score!</div></div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMessage()" />
+      <button class="chat-send" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><div class="logo-icon">✦</div><span class="text-gradient logo-text">ResumeAI</span></div>
+          <p>Empowering job seekers with AI-powered resume analysis. Your dream career is just one upload away.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn">GH</a>
+            <a href="#" class="social-btn">TW</a>
+            <a href="#" class="social-btn">LI</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">API</a></li><li><a href="#">Changelog</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Made by Archita Garg - ResumeAI © 2026</p>
+        <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
